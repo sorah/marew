@@ -14,4 +14,8 @@ class Participation < ApplicationRecord
 
   has_many :participation_taggings
   has_many :tags, through: :tags
+
+  def placement
+    @placement ||= Placement.new(placement_day, placement_block, placement_number, placement_ab)
+  end
 end

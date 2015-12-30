@@ -12,5 +12,6 @@ module Marew
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Asia/Tokyo'
+    config.paths.add Rails.root.join('lib', 'autoload').to_s, eager_load: true
   end
 end
