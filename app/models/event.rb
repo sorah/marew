@@ -4,4 +4,6 @@ class Event < ApplicationRecord
 
   has_many :checks, through: :participations
   has_many :errands, through: :participations
+
+  has_many :twitter_informations
 end

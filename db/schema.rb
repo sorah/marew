@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20151230082734) do
 
   create_table "twitter_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "participation_id", null: false
+    t.integer  "event_id",         null: false
     t.string   "screen_name",      null: false
     t.string   "name",             null: false
     t.string   "placement_day"
@@ -116,11 +117,15 @@ ActiveRecord::Schema.define(version: 20151230082734) do
     t.string   "placement_ab"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.index ["event_id", "screen_name"], name: "index_twitter_informations_on_event_id_and_screen_name", unique: true, using: :btree
+    t.index ["event_id"], name: "index_twitter_informations_on_event_id", using: :btree
     t.index ["participation_id"], name: "index_twitter_informations_on_participation_id", using: :btree
+    t.index ["screen_name"], name: "index_twitter_informations_on_screen_name", unique: true, using: :btree
   end
 
   create_table "webcatalog_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "participation_id",                null: false
+    t.integer  "event_id",                        null: false
     t.string   "webcatalog_id_str",               null: false
     t.string   "name",                            null: false
     t.string   "placement_day"
@@ -130,6 +135,8 @@ ActiveRecord::Schema.define(version: 20151230082734) do
     t.text     "comment",           limit: 65535
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["event_id", "webcatalog_id_str"], name: "index_webcatalog_informations_on_event_id_and_webcatalog_id_str", unique: true, using: :btree
+    t.index ["event_id"], name: "index_webcatalog_informations_on_event_id", using: :btree
     t.index ["participation_id"], name: "index_webcatalog_informations_on_participation_id", using: :btree
   end
 
@@ -145,6 +152,8 @@ ActiveRecord::Schema.define(version: 20151230082734) do
   add_foreign_key "participation_taggings", "tags"
   add_foreign_key "participations", "circles"
   add_foreign_key "participations", "events"
+  add_foreign_key "twitter_informations", "events"
   add_foreign_key "twitter_informations", "participations"
+  add_foreign_key "webcatalog_informations", "events"
   add_foreign_key "webcatalog_informations", "participations"
 end
