@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230082734) do
+ActiveRecord::Schema.define(version: 20151230120812) do
 
   create_table "checks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "participation_id",               null: false
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20151230082734) do
     t.text     "comment",           limit: 65535
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "circlecut_url"
     t.index ["event_id", "webcatalog_id_str"], name: "index_webcatalog_informations_on_event_id_and_webcatalog_id_str", unique: true, using: :btree
     t.index ["event_id"], name: "index_webcatalog_informations_on_event_id", using: :btree
     t.index ["participation_id"], name: "index_webcatalog_informations_on_participation_id", using: :btree
