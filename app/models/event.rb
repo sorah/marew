@@ -6,4 +6,5 @@ class Event < ApplicationRecord
   has_many :errands, through: :participations
 
   has_many :twitter_informations
+  has_many :webcatalog_informations
 end
